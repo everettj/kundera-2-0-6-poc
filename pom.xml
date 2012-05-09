@@ -1,8 +1,78 @@
-<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
-  <modelVersion>4.0.0</modelVersion>
-  <groupId>net.planettelex</groupId>
-  <artifactId>kundera-2-0-6-poc</artifactId>
-  <version>0.0.1-SNAPSHOT</version>
-  <name>Kundera 2.0.6 proof of concept</name>
-  <description>Kundera 2.0.6 proof of concept</description>
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+    <modelVersion>4.0.0</modelVersion>
+    <groupId>net.planettelex</groupId>
+    <artifactId>kundera-2-0-6-poc</artifactId>
+    <version>0.0.1-SNAPSHOT</version>
+    <name>Kundera 2.0.6 proof of concept</name>
+    <description>Kundera 2.0.6 proof of concept</description>
+
+    <repositories>
+        <repository>
+            <id>sonatype-nexus</id>
+            <name>Kundera Public Repository</name>
+            <url>https://oss.sonatype.org/content/repositories/releases</url>
+            <releases>
+                <enabled>true</enabled>
+            </releases>
+            <snapshots>
+                <enabled>false</enabled>
+            </snapshots>
+        </repository>
+
+        <repository>
+            <id>kundera-missing</id>
+            <name>Kundera Public Missing Resources Repository</name>
+            <url>http://kundera.googlecode.com/svn/maven2/maven-missing-resources</url>
+            <releases>
+                <enabled>true</enabled>
+            </releases>
+            <snapshots>
+                <enabled>true</enabled>
+            </snapshots>
+        </repository>
+
+        <repository>
+            <id>central</id>
+            <name>Maven Central Repo</name>
+            <url>http://repo1.maven.org/maven2</url>
+        </repository>
+
+        <repository>
+            <id>riptano</id>
+            <name>riptano</name>
+            <url>http://mvn.riptano.com/content/repositories/public</url>
+        </repository>
+
+        <repository>
+            <id>maven.scale7.org</id>
+            <name>Scale7 Maven Repo</name>
+            <url>https://github.com/s7/mvnrepo/raw/master</url>
+            <snapshots>
+                <enabled>true</enabled>
+            </snapshots>
+        </repository>
+
+    </repositories>
+
+    <dependencies>
+        <dependency>
+            <groupId>com.impetus.client</groupId>
+            <artifactId>kundera-cassandra</artifactId>
+            <version>2.0.6</version>
+        </dependency>
+    </dependencies>
+
+    <build>
+        <plugins>
+            <plugin>
+                <artifactId>maven-compiler-plugin</artifactId>
+                <configuration>
+                    <source>1.6</source>
+                    <target>1.6</target>
+                </configuration>
+            </plugin>
+        </plugins>
+    </build>
+
 </project>
