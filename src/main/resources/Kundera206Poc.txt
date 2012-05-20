@@ -1,6 +1,19 @@
 create keyspace Kundera206Poc;
 use Kundera206Poc;
 
-create column family users with comparator=UTF8Type and default_validation_class=UTF8Type and key_validation_class=UTF8Type;
-create column family addresses with comparator=UTF8Type and default_validation_class=UTF8Type and key_validation_class=UTF8Type;
-create column family phones with comparator=UTF8Type and default_validation_class=UTF8Type and key_validation_class=UTF8Type;
+create column family users
+with comparator=UTF8Type
+and default_validation_class=UTF8Type
+and key_validation_class=UTF8Type;
+
+create column family addresses
+with comparator=UTF8Type
+and key_validation_class = UTF8Type
+and column_metadata =
+[
+    {column_name: userId, validation_class: UTF8Type, index_type: KEYS}
+    {column_name: city, validation_class: UTF8Type}
+];
+
+-- create column family addresses with comparator=UTF8Type and default_validation_class=UTF8Type and key_validation_class=UTF8Type;
+-- create column family phones with comparator=UTF8Type and default_validation_class=UTF8Type and key_validation_class=UTF8Type;

@@ -1,49 +1,44 @@
 package net.planettelex.kundera206poc.entity;
 
+import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertNotNull;
 
-import javax.persistence.EntityManager;
-import javax.persistence.EntityManagerFactory;
-import javax.persistence.Persistence;
+import java.util.UUID;
 
 import org.junit.After;
 import org.junit.Before;
 import org.junit.Test;
 
-public class UserTest {
-
-	private EntityManager em;
-
-	private EntityManagerFactory emf;
+public class UserTest extends ATest {
 
 	private User user;
 
 	@Test
-	public void readWriteTest() {
-		em.persist(user);
+	public void readTest() {
+		// find works
 		User foundUser = em.find(User.class, user.getUserId());
 		assertNotNull(foundUser);
+		assertEquals(user.getFirstName(), foundUser.getFirstName());
 	}
 
 	@Before
 	public void setUp() {
 		user = new User();
-		user.setUserId("0001");
+		user.setUserId(UUID.randomUUID().toString());
 		user.setFirstName("John");
 		user.setLastName("Smith");
-		user.setCity("London");
 
-		emf = Persistence.createEntityManagerFactory("cassandra_pu");
-		em = emf.createEntityManager();
+		em = entityManagerFactory.createEntityManager();
+		// persist works
+		em.persist(user);
 	}
 
 	@After
 	public void tearDown() {
+		// remove works
+		em.remove(user);
 		em.close();
-		emf.close();
-
 		user = null;
 		em = null;
-		emf = null;
 	}
 }

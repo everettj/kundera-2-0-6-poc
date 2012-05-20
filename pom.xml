@@ -7,6 +7,14 @@
     <name>Kundera 2.0.6 proof of concept</name>
     <description>Kundera 2.0.6 proof of concept</description>
 
+    <!-- Properties -->
+    <properties>
+        <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+        <java.version>1.6</java.version>
+        <spring.version>3.1.1.RELEASE</spring.version>
+    </properties>
+
+    <!--  Repositories -->
     <repositories>
         <repository>
             <id>sonatype-nexus</id>
@@ -19,7 +27,6 @@
                 <enabled>false</enabled>
             </snapshots>
         </repository>
-
         <repository>
             <id>kundera-missing</id>
             <name>Kundera Public Missing Resources Repository</name>
@@ -31,19 +38,16 @@
                 <enabled>true</enabled>
             </snapshots>
         </repository>
-
         <repository>
             <id>central</id>
             <name>Maven Central Repo</name>
             <url>http://repo1.maven.org/maven2</url>
         </repository>
-
         <repository>
             <id>riptano</id>
             <name>riptano</name>
             <url>http://mvn.riptano.com/content/repositories/public</url>
         </repository>
-
         <repository>
             <id>maven.scale7.org</id>
             <name>Scale7 Maven Repo</name>
@@ -52,17 +56,67 @@
                 <enabled>true</enabled>
             </snapshots>
         </repository>
-
     </repositories>
 
+    <!-- Dependencies -->
     <dependencies>
         <dependency>
             <groupId>com.impetus.client</groupId>
             <artifactId>kundera-cassandra</artifactId>
             <version>2.0.6</version>
         </dependency>
+        <dependency>
+            <groupId>org.springframework</groupId>
+            <artifactId>spring-webmvc</artifactId>
+            <version>${spring.version}</version>
+        </dependency>
+        <dependency>
+            <groupId>org.springframework</groupId>
+            <artifactId>spring-oxm</artifactId>
+            <version>${spring.version}</version>
+            <scope>runtime</scope>
+        </dependency>
+        <dependency>
+            <groupId>org.springframework</groupId>
+            <artifactId>spring-orm</artifactId>
+            <version>${spring.version}</version>
+        </dependency>
+
+        <!-- Testing -->
+        <dependency>
+            <groupId>junit</groupId>
+            <artifactId>junit</artifactId>
+            <version>4.10</version>
+            <scope>test</scope>
+            <exclusions>
+                <exclusion>
+                    <artifactId>hamcrest-core</artifactId>
+                    <groupId>org.hamcrest</groupId>
+                </exclusion>
+            </exclusions>
+        </dependency>
+        <dependency>
+            <groupId>org.mockito</groupId>
+            <artifactId>mockito-all</artifactId>
+            <version>1.9.0</version>
+            <scope>test</scope>
+        </dependency>
+        <dependency>
+            <groupId>org.springframework</groupId>
+            <artifactId>spring-test</artifactId>
+            <version>${spring.version}</version>
+            <scope>test</scope>
+        </dependency>
+        <dependency>
+            <groupId>org.springframework</groupId>
+            <artifactId>spring-test-mvc</artifactId>
+            <version>1.0.0.BUILD-SNAPSHOT</version>
+            <scope>test</scope>
+        </dependency>
     </dependencies>
 
+
+    <!-- Build -->
     <build>
         <plugins>
             <plugin>

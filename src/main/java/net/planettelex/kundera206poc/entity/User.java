@@ -8,8 +8,6 @@ import javax.persistence.Table;
 @Entity
 @Table(name = "users", schema = "Kundera206Poc@cassandra_pu")
 public class User {
-	@Column(name = "city")
-	private String city;
 
 	@Column(name = "first_name")
 	private String firstName;
@@ -23,10 +21,6 @@ public class User {
 	public User() {
 	}
 
-	public String getCity() {
-		return city;
-	}
-
 	public String getFirstName() {
 		return firstName;
 	}
@@ -37,10 +31,6 @@ public class User {
 
 	public String getUserId() {
 		return userId;
-	}
-
-	public void setCity(String city) {
-		this.city = city;
 	}
 
 	public void setFirstName(String firstName) {
