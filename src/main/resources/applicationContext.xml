@@ -6,4 +6,7 @@
 	<bean id="entityManagerFactory" class="org.springframework.orm.jpa.LocalContainerEntityManagerFactoryBean">
 		<property name="persistenceUnitName" value="cassandra_pu" />
 	</bean>
+
+
+    <bean id="userDao" class="net.planettelex.kundera206poc.dao.UserDao" />
 </beans>

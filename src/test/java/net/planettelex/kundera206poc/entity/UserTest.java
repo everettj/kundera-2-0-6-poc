@@ -5,18 +5,35 @@ import static org.junit.Assert.assertNotNull;
 
 import java.util.UUID;
 
+import net.planettelex.kundera206poc.dao.UserDao;
+
 import org.junit.After;
 import org.junit.Before;
 import org.junit.Test;
+import org.springframework.beans.factory.annotation.Autowired;
+
+import com.impetus.kundera.KunderaException;
 
 public class UserTest extends ATest {
 
 	private User user;
 
+	@Autowired
+	private UserDao userDao;
+
+	@Test(expected = KunderaException.class)
+	public void cannotPersistNullColumn() {
+		User newUser = new User();
+		newUser.setUserId(UUID.randomUUID().toString());
+		newUser.setFirstName("John");
+		// Lastname is null
+
+		userDao.save(newUser);
+	}
+
 	@Test
 	public void readTest() {
-		// find works
-		User foundUser = em.find(User.class, user.getUserId());
+		User foundUser = userDao.get(user.getUserId());
 		assertNotNull(foundUser);
 		assertEquals(user.getFirstName(), foundUser.getFirstName());
 	}
@@ -28,17 +45,12 @@ public class UserTest extends ATest {
 		user.setFirstName("John");
 		user.setLastName("Smith");
 
-		em = entityManagerFactory.createEntityManager();
-		// persist works
-		em.persist(user);
+		userDao.save(user);
 	}
 
 	@After
 	public void tearDown() {
-		// remove works
-		em.remove(user);
-		em.close();
+		userDao.delete(user);
 		user = null;
-		em = null;
 	}
 }
