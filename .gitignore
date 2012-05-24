@@ -3,4 +3,5 @@
 !src/*
 !src/main
 !pom.xml
+!README
 !.gitignore
