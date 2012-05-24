@@ -21,6 +21,7 @@ public class UserTest extends ATest {
 	@Autowired
 	private UserDao userDao;
 
+	// this test will pass, but the delete in tearDown() fails
 	@Test(expected = KunderaException.class)
 	public void cannotPersistNullColumn() {
 		User newUser = new User();
@@ -31,6 +32,7 @@ public class UserTest extends ATest {
 		userDao.save(newUser);
 	}
 
+	// this test will pass when run by itself
 	@Test
 	public void readTest() {
 		User foundUser = userDao.get(user.getUserId());

@@ -9,16 +9,10 @@ import javax.persistence.PersistenceContext;
 import javax.persistence.PersistenceContextType;
 import javax.persistence.Query;
 
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
-
 public abstract class ADao<T> {
 
 	@PersistenceContext(type = PersistenceContextType.EXTENDED)
 	protected EntityManager em;
-
-	/** The logger for every subclass to utilize. */
-	protected final Logger log = LoggerFactory.getLogger(getClass());
 
 	/** The entity type supported by this DAO. */
 	private Class<T> entityType;
