@@ -12,8 +12,6 @@ import org.junit.Before;
 import org.junit.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 
-import com.impetus.kundera.KunderaException;
-
 public class UserTest extends ATest {
 
 	private User user;
@@ -22,7 +20,7 @@ public class UserTest extends ATest {
 	private UserDao userDao;
 
 	// this test will pass, but the delete in tearDown() fails
-	@Test(expected = KunderaException.class)
+	@Test
 	public void cannotPersistNullColumn() {
 		User newUser = new User();
 		newUser.setUserId(UUID.randomUUID().toString());
